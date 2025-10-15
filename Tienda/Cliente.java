@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente {
     private String cedula;
@@ -6,24 +7,57 @@ public class Cliente {
     private String direccion;
     private String telefono;
     private String correo;
-    private ArrayList<Pedido> pedidos;
+    private List<Pedido> pedidos;
 
-public Cliente(String cedula, String nombre, String direccion, String telefono, String correo) {
+    public Cliente() {
+        this.pedidos = new ArrayList<>();
+    }
+
+    public Cliente(String cedula, String nombre, String direccion, String telefono, String correo) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.correo = correo;
         this.pedidos = new ArrayList<>();
-}
+    }
 
+    // getters y setters
+    public String getCedula() { return cedula; }
+    public void setCedula(String cedula) { this.cedula = cedula; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getDireccion() { return direccion; }
+    public void setDireccion(String direccion) { this.direccion = direccion; }
+
+    public String getTelefono() { return telefono; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
+
+    public String getCorreo() { return correo; }
+    public void setCorreo(String correo) { this.correo = correo; }
+
+    public List<Pedido> getPedidos() { return pedidos; }
+    public void setPedidos(List<Pedido> pedidos) { this.pedidos = pedidos; }
+
+    // Métodos requeridos
     public void registrarPedido(Pedido pedido) {
-        pedidos.add(pedido);
+        if (pedido != null) {
+            pedidos.add(pedido);
+        }
     }
 
     public void consultarPedidos() {
-        for (Pedido p : pedidos) {
-            p.mostrarDetalle();
+        System.out.println("Pedidos de " + nombre + ":");
+        if (pedidos.isEmpty()) {
+            System.out.println("  No hay pedidos.");
+        } else {
+            for (int i = 0; i < pedidos.size(); i++) {
+                System.out.println("  Pedido " + (i+1) + ":");
+                pedidos.get(i).mostrarDetalle();
+                System.out.println("-------------");
+            }
         }
     }
 
@@ -33,6 +67,4 @@ public Cliente(String cedula, String nombre, String direccion, String telefono, 
         this.telefono = nuevoTelefono;
         this.correo = nuevoCorreo;
     }
-
-    public String getNombre() { return nombre; }
 }
