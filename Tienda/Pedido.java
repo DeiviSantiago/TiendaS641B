@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Pedido {
     private Cliente cliente;
-    // en UML: producto[]: Producto -> lo representamos con List
+    // en UML: producto[]: Producto -> se representan con List
     private List<Producto> producto;
     private Date fecha;
     private String numeroTarjetaCredito;
